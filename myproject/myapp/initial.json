@@ -1,0 +1,9 @@
+[
+    {
+        "model":"myapp.Hello",
+        "pk":1,
+        "fields":{
+            "text":"Hi there first web page"
+        }
+    }
+]
