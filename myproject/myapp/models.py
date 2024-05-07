@@ -13,3 +13,9 @@ class Person(models.model):
     def __str__(self):
         return self.name
 
+class Address(models.model):
+    number=models.IntegerField( null=false, blank=True)
+    street_name=models.CharField(max_length=500, null=false, blank=True)
+    resident= models.ForeignKey(Person, null=True, on_delete=models.SET_NULL)
+
+
