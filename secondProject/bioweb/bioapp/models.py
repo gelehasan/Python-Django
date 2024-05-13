@@ -24,6 +24,7 @@ class Gene(models.Model):
     start_codon= models.CharField(max_length=1, default="M")
     sequencing= models.ForeignKey(Sequencing, on_delete=models.DO_NOTHING)
     ec= models.ForeignKey(Ec, on_delete=models.DO_NOTHING)
+    access= models.IntegerField(null=False, blank=False, default=0)
 
     def __str__(self):
         return self.gene_id

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1></h1>
+
+   <table>
+    <tr><th>Key</th><th>Value</th></tr>
+    <tr><td>Entity:</td><td>{{gene.entity}}</td></tr>
+    <tr><td>Start</td><td>{{gene.start}}</td></tr>
+    <tr><td>Stop</td><td>{{gene.stop}}</td></tr>
+    <tr><td>Sense</td><td>{{gene.sense}}</td></tr>
+    <tr><td>Start codon</td><td>{{gene.start_codon}}</td></tr>
+
+    {% with seq=gene.sequencing%}
+    <tr><td>Sequencing factory</td> <td>{{seq.sequencing_factory}}</td></tr>
+    <tr><td>Sequencing location</td> <td>{{seq.sequencing_location}}</td></tr>
+    {%endwith%}
+
+    {% with ec=gene.ec%}
+    <tr><td>Ec Name</td> <td>{{ec.ec_name}}</td></tr>
+    {%endwith%}
+
+
+    {% with links=gene.geneattributelink_set.all %}
+    {% for link in links%}
+    <tr><td>{{link.attribute.key}}</td><td>{{link.attribute.value}}</td></tr>
+    {%endfor%}
+    {%endwith%}
+   </table>
+
+</body>
+</html>
