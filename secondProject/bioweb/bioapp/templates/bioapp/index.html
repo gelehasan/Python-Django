@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <h1>Current genes we have</h1>
+
+   <table>
+    <tr><th>Gene ID</th></tr>
+    {% for gene in genes %}
+    <tr><td><a href="/gene/{{gene.pk}}"> {{gene}} </a></td></tr>
+    {% endfor%}
+   </table>
+
+</body>
+</html>
