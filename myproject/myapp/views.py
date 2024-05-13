@@ -12,3 +12,4 @@ def simple_view(request):
     first_address=addresses[0]
     resident_name=str(first_address.resident)
     return render(request, 'helloworld/simple.html', {"address":first_address, "name":resident_name})
+    
