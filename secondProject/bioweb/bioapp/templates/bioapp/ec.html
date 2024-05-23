@@ -1,0 +1,22 @@
+
+
+{%block content%}
+<h2>Current EC Names</h2>
+
+<table>
+    <tr><th>EC Names</th></tr>
+        {% for ec in ecs%}
+        <tr><td>{{ec}}</td></tr>
+        {% endfor %}
+</table>
+<br/>
+
+<h2>Add new EC</h2>
+<form action="/create_ec/" method="post" class="form">
+    {% csrf_token %}
+    <input type="text" name="ec_name"/>
+    <input type="submit"  value="submit"/>
+</form>
+
+
+{% endblock%}
