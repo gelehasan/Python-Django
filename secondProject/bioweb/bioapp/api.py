@@ -24,6 +24,18 @@ def gen_detail(request, pk=None):
     if request.method == 'GET':
         serializer = GeneSerializer(gene)
         return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = GeneSerializer(gene, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        gene.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+        
 
 @api_view(['GET'])
 def gene_list(request):
