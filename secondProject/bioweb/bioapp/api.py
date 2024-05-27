@@ -1,10 +1,13 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.parsers import JSONParser
 from .models import *
 from .serializers import *
 
-@csrf_exempt
+@api_view(['GET', 'POST'])
 def gen_detail(request, pk):
     try:
         gene = Gene.objects.get(pk=pk)
@@ -13,4 +16,16 @@ def gen_detail(request, pk):
     
     if request.method=='GET':
         serializer =GeneSerializer(gene)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def gene_list(request):
+    try:
+        gene = Gene.objects.all()
+    except Gene.DoesNotExist:
+        return HttpResponse(status=404)
+    
+    if request.method=='GET':
+        serializer =GeneSerializer(gene, many=True)
+        return Response(serializer.data)

@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 # A way to respond to http request
 REST_FRAMEWORK= {
     'DEFAULT_PERMISSION_CLASSES':[
-        'rest_framework_permissions.AllowAny'.
+        'rest_framework.permissions.AllowAny',
     ]
 }
 
