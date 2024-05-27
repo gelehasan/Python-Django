@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'bioapp.apps.BioappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# A way to respond to http request
+REST_FRAMEWORK= {
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework_permissions.AllowAny'.
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
