@@ -6,7 +6,10 @@ from rest_framework import status
 from rest_framework.parsers import JSONParser
 from .models import *
 from .serializers import *
+from rest_framework import generics
+from rest_framework import mixins
 
+"""
 @api_view(['GET', 'POST'])
 def gen_detail(request, pk=None):
     if request.method == 'POST':
@@ -34,9 +37,9 @@ def gen_detail(request, pk=None):
     elif request.method == 'DELETE':
         gene.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+"""
 
-        
-
+"""
 @api_view(['GET'])
 def gene_list(request):
     try:
@@ -47,3 +50,29 @@ def gene_list(request):
     if request.method=='GET':
         serializer =GeneSerializer(gene, many=True)
         return Response(serializer.data)
+"""
+class GeneDetail(mixins.CreateModelMixin,
+                 mixins.RetrieveModelMixin,
+                 mixins.UpdateModelMixin,
+                 mixins.DestroyModelMixin,
+                 generics.GenericAPIView):
+    queryset = Gene.objects.all()
+    serializer_class = GeneSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+
+class GeneList(generics.ListAPIView):
+    queryset= Gene.objects.all()
+    serializer_class = GeneListSerializer
