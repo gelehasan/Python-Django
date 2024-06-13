@@ -26,7 +26,6 @@ class GeneSerializerTest(APITestCase):
         data = self.geneserializer.data
         self.assertEqual(data['gene_id'], 'gene1')
 
-
 # Create your tests here.
 class GeneTest(APITestCase):
     def setUp(self):

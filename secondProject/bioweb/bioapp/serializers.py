@@ -68,7 +68,6 @@ class GeneSerializer(serializers.ModelSerializer):
         gene.save()
         return gene
 
-
 class GeneListSerializer(serializers.ModelSerializer):
      class Meta:
         model= Gene
